@@ -21,11 +21,6 @@ RUN cd $HOME \
     && mkdir -p /opt/jboss \
     && mv $HOME/wildfly-$WILDFLY_VERSION $JBOSS_HOME \
     && rm wildfly-$WILDFLY_VERSION.tar.gz
-    # \
-    # && chown -R jboss:0 ${JBOSS_HOME} \
-    # && chmod -R g+rw ${JBOSS_HOME}
-
-RUN apk del curl
 
 # Ensure signals are forwarded to the JVM process correctly for graceful shutdown
 ENV LAUNCH_JBOSS_IN_BACKGROUND true
