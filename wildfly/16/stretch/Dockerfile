@@ -1,14 +1,16 @@
 # This Dockerfile is strongly based on jboss/wildfly docker definition.
 
-FROM adoptopenjdk/openjdk11:alpine
+FROM openjdk:11.0.3-jre-slim-stretch
 
-RUN apk add --update curl && \
-    rm -rf /var/cache/apk/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+		curl \
+	&& rm -rf /var/lib/apt/lists/*
 
 # Set the WILDFLY_VERSION env variable
 ENV WILDFLY_VERSION 16.0.0.Final
 ENV WILDFLY_SHA1 287c21b069ec6ecd80472afec01384093ed8eb7d
 ENV JBOSS_HOME /opt/wildfly
+ENV SERVER_CONFIG standalone.xml
 
 USER root
 
